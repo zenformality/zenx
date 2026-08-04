@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenx — Building things, still figuring out</title>
+  <meta name="description" content="Portfolio of Zenx (Prakit Chetia), a student developer building web apps, games, and tools in Python and TypeScript." />
+  <link rel="icon" type="image/png" href="profile.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    document.documentElement.classList.replace("no-js", "js");
+  </script>
+</head>
+<body class="is-loading">
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="pre-top">
+      <span class="pre-word">zenx</span><span class="pre-blip">_</span>
+    </div>
+    <div class="pre-bar"><span id="pre-fill"></span></div>
+    <div class="pre-count" id="pre-count">0%</div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"><span class="cursor-label">view</span></div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top">
+        <img class="brand-mark" src="profile.png" alt="Prakit Chetia" />
+        <span class="brand-name">zenx</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li>
+          <a class="nav-cta" href="https://github.com/zenformality" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg>
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas class="dot-canvas" id="dots" aria-hidden="true"></canvas>
+
+      <div class="orb orb-lg" data-speed="0.08" aria-hidden="true"><div class="orb-inner"></div></div>
+      <div class="orb orb-ring" data-speed="-0.05" aria-hidden="true"><div class="orb-inner"></div></div>
+      <div class="orb orb-sm" data-speed="0.03" aria-hidden="true"><div class="orb-inner"></div></div>
+
+      <div class="container hero-inner">
+        <div class="hero-intro hero-el" style="--d: 0.15s">
+          <img class="hero-avatar" src="profile.png" alt="Prakit Chetia" width="64" height="64" />
+          <p class="eyebrow">
+            hi, i'm zenx <span class="eyebrow-dot" aria-hidden="true"></span> the humans call me <strong>prakit</strong>
+          </p>
+        </div>
+
+        <h1 class="hero-title" aria-label="Building things, still figuring out">
+          <span class="hl" aria-hidden="true"><span class="hl-inner">Building things,</span></span>
+          <span class="hl hl-outline" aria-hidden="true"><span class="hl-inner">still figuring out</span></span>
+        </h1>
+
+        <p class="hero-sub hero-el" style="--d: 0.4s">
+          Student. So instead of deciding what to do with my life, I build web apps,
+          games, and weird Python experiments — then throw them on GitHub.
+        </p>
+
+        <div class="hero-actions hero-el" style="--d: 0.55s">
+          <a class="btn btn-primary btn-magnetic" href="#work">
+            See what I've made
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 5v14" /><path d="M19 12l-7 7-7-7" />
+            </svg>
+          </a>
+          <a class="btn btn-secondary btn-magnetic" href="https://github.com/zenformality" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="stats hero-el" style="--d: 0.7s">
+          <div class="stat">
+            <span class="stat-num" id="stat-stars" data-count="57" data-suffix="+">0</span>
+            <span class="stat-label">github stars</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="stat-repos" data-count="25">0</span>
+            <span class="stat-label">repositories</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="stat-langs" data-count="5">0</span>
+            <span class="stat-label">languages</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-logos hero-el" style="--d: 0.85s" aria-label="Languages and tools">
+        <i class="devicon-python-plain" title="Python"></i>
+        <i class="devicon-typescript-plain" title="TypeScript"></i>
+        <i class="devicon-javascript-plain" title="JavaScript"></i>
+        <i class="devicon-go-original-wordmark" title="Go"></i>
+        <i class="devicon-flutter-plain" title="Flutter"></i>
+        <i class="devicon-django-plain" title="Django"></i>
+        <i class="devicon-svelte-plain" title="Svelte"></i>
+        <i class="devicon-vuejs-plain-wordmark" title="Vue"></i>
+        <i class="devicon-firebase-plain" title="Firebase"></i>
+        <i class="devicon-tailwindcss-plain" title="Tailwind"></i>
+        <i class="devicon-git-plain" title="Git"></i>
+        <i class="devicon-figma-plain" title="Figma"></i>
+      </div>
+
+      <p class="scroll-cue" aria-hidden="true">scroll down</p>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee marquee-steel" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="mq-group">
+          <span>python</span><span class="mq-dot">•</span><span>typescript</span><span class="mq-dot">•</span><span>javascript</span><span class="mq-dot">•</span><span>go</span><span class="mq-dot">•</span><span>flutter</span><span class="mq-dot">•</span><span>django</span><span class="mq-dot">•</span><span>svelte</span><span class="mq-dot">•</span><span>vue</span><span class="mq-dot">•</span><span>web apps</span><span class="mq-dot">•</span><span>games</span><span class="mq-dot">•</span><span>still figuring it out</span><span class="mq-dot">•</span>
+        </div>
+        <div class="mq-group">
+          <span>python</span><span class="mq-dot">•</span><span>typescript</span><span class="mq-dot">•</span><span>javascript</span><span class="mq-dot">•</span><span>go</span><span class="mq-dot">•</span><span>flutter</span><span class="mq-dot">•</span><span>django</span><span class="mq-dot">•</span><span>svelte</span><span class="mq-dot">•</span><span>vue</span><span class="mq-dot">•</span><span>web apps</span><span class="mq-dot">•</span><span>games</span><span class="mq-dot">•</span><span>still figuring it out</span><span class="mq-dot">•</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ STICKY WORD CAROUSEL ============ -->
+    <section class="sticky-section">
+      <div class="orb orb-ring orb-swap" data-speed="-0.03" aria-hidden="true"><div class="orb-inner"></div></div>
+      <div class="sticky-stage">
+        <div class="sticky-inner">
+          <p class="section-kicker reveal">02 · what I make</p>
+          <h2 class="swap-title" aria-label="I build web apps, games, python experiments, and questionable decisions, and ship it to the internet">
+            <span class="swap-line reveal-split" data-split>I build</span>
+            <span class="swap-mask" aria-hidden="true">
+              <span class="swap-track" id="swap-track">
+                <span>web apps</span>
+                <span>games</span>
+                <span>python experiments</span>
+                <span>questionable decisions</span>
+              </span>
+            </span>
+            <span class="swap-line reveal-split" data-split>and ship it to the internet</span>
+          </h2>
+          <div class="swap-dots" id="swap-dots" aria-hidden="true">
+            <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <p class="swap-hint">keep scrolling — the word changes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section container" id="work">
+      <div class="section-head reveal">
+        <p class="section-kicker">03 · selected work</p>
+        <h2 data-split class="reveal-split">Things I've made</h2>
+        <p class="section-sub">A few I'm actually willing to show people.</p>
+      </div>
+
+      <div class="work-list">
+        <!-- 01 Aether -->
+        <article class="work-row reveal" style="--d: 0s" data-cursor="view">
+          <span class="row-ghost" aria-hidden="true">01</span>
+          <div class="work-row-inner">
+            <div class="row-num" aria-hidden="true">01</div>
+            <div class="row-main">
+              <h3 class="row-name"><a href="https://github.com/zenformality/Aether" target="_blank" rel="noopener noreferrer">Aether</a></h3>
+              <p class="row-desc">A web Python IDE built on the Monaco editor — write, edit, and run Python right in the browser, no setup.</p>
+              <ul class="tags">
+                <li>TypeScript</li><li>Monaco</li><li>Web IDE</li>
+              </ul>
+            </div>
+            <div class="row-meta">
+              <span class="stars">★ 45</span>
+              <a class="row-demo" href="https://aether-ide-lemon.vercel.app" target="_blank" rel="noopener noreferrer">
+                demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 Zenbook -->
+        <article class="work-row reveal" style="--d: 0.08s" data-cursor="view">
+          <span class="row-ghost" aria-hidden="true">02</span>
+          <div class="work-row-inner">
+            <div class="row-num" aria-hidden="true">02</div>
+            <div class="row-main">
+              <h3 class="row-name"><a href="https://github.com/zenformality/Zenbook" target="_blank" rel="noopener noreferrer">Zenbook</a></h3>
+              <p class="row-desc">A notes app I designed for studying — works on phones, laptops, and desktops, and it's open for anyone who wants it.</p>
+              <ul class="tags">
+                <li>HTML</li><li>Notes</li><li>Study tool</li>
+              </ul>
+            </div>
+            <div class="row-meta">
+              <span class="stars">★ 10</span>
+              <a class="row-demo" href="https://prakit1234.github.io/Zenbook/" target="_blank" rel="noopener noreferrer">
+                demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 Saa- -->
+        <article class="work-row reveal" style="--d: 0.16s" data-cursor="view">
+          <span class="row-ghost" aria-hidden="true">03</span>
+          <div class="work-row-inner">
+            <div class="row-num" aria-hidden="true">03</div>
+            <div class="row-main">
+              <h3 class="row-name"><a href="https://github.com/zenformality/Saa-" target="_blank" rel="noopener noreferrer">Saa-</a></h3>
+              <p class="row-desc">Turns any photo into a turtle-graphics drawing — pure Python, four art modes: sketch, stipple, scanline, spiral.</p>
+              <ul class="tags">
+                <li>Python</li><li>Turtle</li><li>PIL</li><li>Art</li>
+              </ul>
+            </div>
+            <div class="row-meta">
+              <span class="stars stars-new">new</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 MOM-BIRD -->
+        <article class="work-row reveal" style="--d: 0.24s" data-cursor="view">
+          <span class="row-ghost" aria-hidden="true">04</span>
+          <div class="work-row-inner">
+            <div class="row-num" aria-hidden="true">04</div>
+            <div class="row-main">
+              <h3 class="row-name"><a href="https://github.com/zenformality/MOM-BIRD" target="_blank" rel="noopener noreferrer">MOM-BIRD</a></h3>
+              <p class="row-desc">A Flappy Bird-style game with smooth physics, animated wings, and a custom jumpscare. Python + Pygame.</p>
+              <ul class="tags">
+                <li>Python</li><li>Pygame</li><li>Game</li>
+              </ul>
+            </div>
+            <div class="row-meta">
+              <a class="row-demo" href="https://zenformality.github.io/MOM-BIRD/" target="_blank" rel="noopener noreferrer">
+                play
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="more-link reveal">
+        <a href="https://github.com/zenformality?tab=repositories" target="_blank" rel="noopener noreferrer">
+          everything else lives on GitHub
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+        </a>
+      </p>
+    </section>
+
+    <!-- ============ MARQUEE 2 ============ -->
+    <div class="marquee marquee-outline" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="mq-group">
+          <span>made by zenx</span><span class="mq-dot">✳</span><span>prakit chetia</span><span class="mq-dot">✳</span><span>5 languages</span><span class="mq-dot">✳</span><span>25 repos</span><span class="mq-dot">✳</span><span>built with steel blue</span><span class="mq-dot">✳</span><span>and mild confusion</span><span class="mq-dot">✳</span>
+        </div>
+        <div class="mq-group">
+          <span>made by zenx</span><span class="mq-dot">✳</span><span>prakit chetia</span><span class="mq-dot">✳</span><span>5 languages</span><span class="mq-dot">✳</span><span>25 repos</span><span class="mq-dot">✳</span><span>built with steel blue</span><span class="mq-dot">✳</span><span>and mild confusion</span><span class="mq-dot">✳</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section section-tinted" id="about">
+      <div class="aurora aurora-a" aria-hidden="true"></div>
+      <div class="aurora aurora-b" aria-hidden="true"></div>
+      <div class="orb orb-sm orb-about-sm" data-speed="0.06" aria-hidden="true"><div class="orb-inner"></div></div>
+
+      <div class="container about-inner">
+        <p class="section-kicker reveal">04 · about me</p>
+        <h2 class="about-title reveal-split" data-split>Prakit, but online I go by Zenx</h2>
+
+        <div class="about-grid">
+          <div class="about-text reveal" style="--d: 0.1s">
+            <p>
+              I'm a student who still hasn't figured out what to do with my life —
+              so I keep busy building random things: web apps, Python experiments,
+              games, and the occasional AI tinkering. Most of it ends up on
+              <a href="https://github.com/zenformality" target="_blank" rel="noopener noreferrer">GitHub</a>,
+              whether it works or not.
+            </p>
+            <p>
+              I spend most of my time in Python, TypeScript, and JavaScript,
+              with side quests in Go and Flutter/Dart. My projects tend to start with
+              "what if…" and end with "…well, that was a learning experience."
+            </p>
+          </div>
+
+          <ul class="facts reveal" style="--d: 0.2s" aria-label="Quick facts">
+            <li class="fact-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              <span><strong>Status:</strong> Student</span>
+            </li>
+            <li class="fact-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              <span><strong>Languages:</strong> Python · TypeScript · JavaScript · Go · Dart</span>
+            </li>
+            <li class="fact-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              <span><strong>Tools:</strong> Django · Svelte · Vue · Flutter · Firebase · Tailwind</span>
+            </li>
+            <li class="fact-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              <span><strong>Vibe:</strong> Still figuring it out</span>
+            </li>
+            <li class="fact-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              <span><strong>Goal:</strong> Make someone go "wait, you made that?"</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONNECT ============ -->
+    <footer class="connect" id="connect">
+      <div class="orb orb-ring orb-footer" data-speed="0.05" aria-hidden="true"><div class="orb-inner"></div></div>
+
+      <div class="container">
+        <p class="section-kicker reveal">05 · connect</p>
+        <h2 class="connect-title reveal">Got an idea, a bug, or life advice?</h2>
+        <a class="connect-link reveal" style="--d: 0.1s" href="https://github.com/zenformality" target="_blank" rel="noopener noreferrer" aria-label="github.com/zenformality">
+          <span class="link-letters" id="link-letters">github.com/zenformality</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7" /><path d="M8 7h9v9" /></svg>
+        </a>
+
+        <div class="footer-bar">
+          <p>© <span id="year">2026</span> Zenx · Prakit Chetia</p>
+          <p>made with steel blue &amp; mild confusion</p>
+          <p class="footer-sync" id="footer-sync"></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <button class="to-top" id="to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5" /><path d="M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+  <button class="perf-toggle" id="perf-toggle" aria-label="Toggle lightweight mode">
+    <span class="perf-label perf-label-on">lite mode</span>
+    <span class="perf-label perf-label-off">full mode</span>
+    <span class="perf-detail perf-detail-on">— your device prefers less</span>
+    <span class="perf-detail perf-detail-off">— all features on</span>
+  </button>
+
+  <!-- Smooth scroll (progressive enhancement — native scroll if unavailable) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
