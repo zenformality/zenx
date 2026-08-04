@@ -13,6 +13,7 @@
   --steel-700: #2e5f8a;
   --steel-800: #244c70;
   --steel-900: #16324a;
+  --warm: #d4714e;
 
   --white: #ffffff;
   --ink: #16324a;
@@ -189,7 +190,7 @@ html.no-js .preloader {
 }
 
 .pre-bar {
-  width: min(320px, 60vw);
+   width: min(320px, 60vw);
   height: 3px;
   background: var(--steel-100);
   border-radius: 999px;
@@ -343,6 +344,7 @@ html.no-js .preloader {
   border-radius: 9px;
   object-fit: cover;
   box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, var(--steel-500), var(--warm), var(--steel-600));
   transition: transform 0.4s var(--ease-out);
 }
 
@@ -400,7 +402,7 @@ html.no-js .preloader {
   gap: 8px;
   margin-left: 8px;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--steel-600);
   color: #fff !important;
   font-weight: 600;
@@ -459,11 +461,13 @@ html.no-js .preloader {
   background: var(--white);
   color: var(--steel-700);
   border-color: var(--steel-200);
+  border-radius: 8px;
 }
 
 .btn-secondary:hover {
-  background: var(--steel-50);
-  border-color: var(--steel-300);
+  background: var(--white);
+  border-color: var(--warm);
+  color: var(--steel-700);
 }
 
 /* ---------- Floating orbs ---------- */
@@ -577,7 +581,7 @@ html.no-js .preloader {
   padding: 8px 16px;
   border: 1px solid var(--steel-200);
   background: rgba(255, 255, 255, 0.8);
-  border-radius: 999px;
+  border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--steel-700);
@@ -705,6 +709,7 @@ html.no-js .preloader {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  border-radius: 12px;
 }
 
 .stat-num {
@@ -764,7 +769,7 @@ html.no-js .preloader {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--steel-300);
+  color: var(--warm);
   margin: 0;
   cursor: default;
   transition: color 0.3s ease;
@@ -777,11 +782,11 @@ html.no-js .preloader {
   overflow: hidden;
   display: inline-block;
   transition: max-width 0.4s var(--ease-out), opacity 0.3s ease;
-  color: var(--steel-200);
+  color: var(--warm);
 }
 
 .scroll-cue:hover {
-  color: var(--steel-500);
+  color: var(--warm);
 }
 
 .scroll-cue:hover::after {
@@ -801,6 +806,7 @@ html.no-js .preloader {
   background: var(--steel-600);
   color: #fff;
   border-color: transparent;
+  transform: rotate(-0.5deg);
 }
 
 .marquee-outline {
@@ -960,7 +966,7 @@ html.no-js .preloader {
 
 .dot.on {
   width: 26px;
-  background: var(--steel-600);
+  background: var(--warm);
 }
 
 .swap-hint {
@@ -1093,7 +1099,7 @@ html.no-js .preloader {
 
 .tags li {
   padding: 4px 12px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--white);
   border: 1px solid var(--steel-200);
   color: var(--steel-700);
@@ -1235,7 +1241,7 @@ html.no-js .preloader {
   align-items: center;
   gap: 10px;
   padding: 10px 18px;
-  border-radius: 999px;
+  border-radius: 12px;
   background: var(--white);
   border: 1px solid var(--steel-200);
   color: var(--slate);
@@ -1448,7 +1454,7 @@ html.no-js .preloader {
   right: 24px;
   bottom: 82px;
   z-index: 70;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--steel-200);
   display: inline-flex;
   align-items: center;
@@ -1497,8 +1503,8 @@ html.no-js .preloader {
 }
 
 .perf-toggle:hover {
-  border-color: var(--steel-300);
-  color: var(--steel-600);
+  border-color: var(--warm);
+  color: var(--warm);
   background: var(--white);
 }
 
@@ -1526,6 +1532,7 @@ html.no-js .preloader {
   display: inline;
   max-width: 0;
   opacity: 0;
+  color: var(--warm);
 }
 
 .perf-toggle.is-low:hover .perf-detail-off {
