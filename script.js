@@ -299,6 +299,18 @@
   /* ---------- Reveal on scroll ---------- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
+  /* Assign random reveal directions for organic feel */
+  var revealTypes = ["from-left", "from-right", "from-below", "drop", "flip", "unfold"];
+  revealEls.forEach(function (el, i) {
+    /* Skip elements that already have animation (cards, marquee) */
+    if (el.classList.contains("name-card") || el.classList.contains("stats-card") ||
+        el.classList.contains("tech-card") || el.classList.contains("marquee")) return;
+
+    /* Assign type based on index for variety */
+    var type = revealTypes[i % revealTypes.length];
+    el.classList.add(type);
+  });
+
   if (!reduceMotion && "IntersectionObserver" in window) {
     var observer = new IntersectionObserver(
       function (entries) {
@@ -607,7 +619,7 @@
         var opacity = dist < maxDist ? 0.25 + (1 - dist / maxDist) * 0.35 : 0.12;
         ctx.beginPath();
         ctx.arc(d.x, d.y, dotRadius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(70,130,180," + opacity.toFixed(2) + ")";
+        ctx.fillStyle = "rgba(34,211,238," + opacity.toFixed(2) + ")";
         ctx.fill();
       }
     }
@@ -753,4 +765,234 @@
       }
     });
   }
+
+  /* ---------- Tilt effect on cards ---------- */
+  tierReady.then(function (t) {
+    if (t === "low" || reduceMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var tiltEls = Array.prototype.slice.call(document.querySelectorAll("[data-tilt]"));
+    tiltEls.forEach(function (el) {
+      var baseRotation = 0;
+      var baseTransform = window.getComputedStyle(el).transform;
+
+      el.addEventListener("mousemove", function (e) {
+        var rect = el.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = ((y - centerY) / centerY) * -3;
+        var rotateY = ((x - centerX) / centerX) * 3;
+
+        el.style.transform = "perspective(600px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) scale(1.015)";
+      });
+
+      el.addEventListener("mouseleave", function () {
+        el.style.transform = "";
+      });
+    });
+  });
+
+  /* ---------- Magnetic buttons ---------- */
+  tierReady.then(function (t) {
+    if (t === "low" || reduceMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn-magnetic"));
+    magnets.forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = "translate(" + (x * 0.3).toFixed(1) + "px," + (y * 0.3).toFixed(1) + "px)";
+      });
+
+      btn.addEventListener("mouseleave", function () {
+        btn.style.transform = "";
+      });
+    });
+  });
+
+  /* ---------- Sticker stamp animation ---------- */
+  var stickers = Array.prototype.slice.call(document.querySelectorAll(".sticker"));
+  stickers.forEach(function (sticker) {
+    sticker.addEventListener("mouseenter", function () {
+      sticker.style.transform = "rotate(-8deg) scale(1.2)";
+    });
+    sticker.addEventListener("mouseleave", function () {
+      sticker.style.transform = "";
+    });
+  });
+
+  /* ---------- Parallax on mouse move for hero cards ---------- */
+  tierReady.then(function (t) {
+    if (t === "low" || reduceMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var hero = document.querySelector(".hero");
+    var nameCard = document.querySelector(".name-card");
+    var statsCard = document.querySelector(".stats-card");
+    var techCard = document.querySelector(".tech-card");
+
+    if (!hero || !nameCard) return;
+
+    var rafId = null;
+
+    hero.addEventListener("mousemove", function (e) {
+      if (rafId) return;
+      rafId = requestAnimationFrame(function () {
+        var rect = hero.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        if (nameCard) nameCard.style.transform = "rotate(" + (-1.5 + x * 3).toFixed(1) + "deg) translate(" + (x * 8).toFixed(1) + "px," + (y * 6).toFixed(1) + "px)";
+        if (statsCard) statsCard.style.transform = "rotate(" + (2.5 - x * 3).toFixed(1) + "deg) translate(" + (-x * 8).toFixed(1) + "px," + (-y * 6).toFixed(1) + "px)";
+        if (techCard) techCard.style.transform = "rotate(" + (-2 + x * 2).toFixed(1) + "deg) translate(" + (x * 6).toFixed(1) + "px," + (y * 5).toFixed(1) + "px)";
+
+        rafId = null;
+      });
+    });
+
+    hero.addEventListener("mouseleave", function () {
+      if (nameCard) nameCard.style.transform = "";
+      if (statsCard) statsCard.style.transform = "";
+      if (techCard) techCard.style.transform = "";
+    });
+  });
+
+  /* ---------- Konami code easter egg ---------- */
+  var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+  var konamiIndex = 0;
+
+  document.addEventListener("keydown", function (e) {
+    if (e.keyCode === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        document.body.style.transform = "rotate(360deg)";
+        document.body.style.transition = "transform 1s ease";
+        setTimeout(function () {
+          document.body.style.transform = "";
+          document.body.style.transition = "";
+        }, 1000);
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  /* ---------- Preview tooltip on work items ---------- */
+  tierReady.then(function () {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var tooltip = document.getElementById("preview-tooltip");
+    var tooltipImg = tooltip ? tooltip.querySelector(".preview-image") : null;
+    var tooltipUrl = tooltip ? tooltip.querySelector(".preview-url") : null;
+    var tooltipLoading = tooltip ? tooltip.querySelector(".preview-loading") : null;
+    var previewItems = Array.prototype.slice.call(document.querySelectorAll("[data-preview-img]"));
+    var hideTimeout = null;
+    var currentImg = null;
+    var imageCache = {};
+
+    if (!tooltip || !previewItems.length) return;
+
+    /* Preload images on init */
+    previewItems.forEach(function (item) {
+      var imgSrc = item.getAttribute("data-preview-img");
+      if (imgSrc && !imageCache[imgSrc]) {
+        var img = new Image();
+        img.src = imgSrc;
+        imageCache[imgSrc] = img;
+      }
+    });
+
+    previewItems.forEach(function (item) {
+      item.addEventListener("mouseenter", function (e) {
+        var imgSrc = item.getAttribute("data-preview-img");
+        var url = item.getAttribute("data-preview");
+        if (!imgSrc) return;
+
+        clearTimeout(hideTimeout);
+
+        /* Position tooltip near cursor but offset */
+        var x = e.clientX + 20;
+        var y = e.clientY - 120;
+
+        /* Keep within viewport */
+        if (x + 380 > window.innerWidth) x = e.clientX - 400;
+        if (y < 20) y = 20;
+        if (y + 260 > window.innerHeight) y = window.innerHeight - 270;
+
+        tooltip.style.left = x + "px";
+        tooltip.style.top = y + "px";
+
+        /* Show loading state */
+        if (tooltipLoading) tooltipLoading.classList.remove("hidden");
+        if (tooltipImg) tooltipImg.classList.remove("loaded");
+
+        /* Only swap image if changed */
+        if (currentImg !== imgSrc && tooltipImg) {
+          tooltipImg.src = imgSrc;
+          currentImg = imgSrc;
+
+          /* Hide loading when image loads */
+          tooltipImg.onload = function () {
+            if (tooltipLoading) tooltipLoading.classList.add("hidden");
+            tooltipImg.classList.add("loaded");
+          };
+
+          /* If cached/loaded already */
+          if (imageCache[imgSrc] && imageCache[imgSrc].complete) {
+            if (tooltipLoading) tooltipLoading.classList.add("hidden");
+            tooltipImg.classList.add("loaded");
+          }
+        } else if (tooltipImg) {
+          /* Same image, just show it */
+          if (tooltipLoading) tooltipLoading.classList.add("hidden");
+          tooltipImg.classList.add("loaded");
+        }
+
+        if (tooltipUrl && url) {
+          try {
+            var hostname = new URL(url).hostname;
+            tooltipUrl.textContent = hostname;
+          } catch (err) {
+            tooltipUrl.textContent = url;
+          }
+        }
+
+        tooltip.classList.add("active");
+      });
+
+      item.addEventListener("mousemove", function (e) {
+        if (!tooltip.classList.contains("active")) return;
+
+        var x = e.clientX + 20;
+        var y = e.clientY - 120;
+
+        if (x + 380 > window.innerWidth) x = e.clientX - 400;
+        if (y < 20) y = 20;
+        if (y + 260 > window.innerHeight) y = window.innerHeight - 270;
+
+        tooltip.style.left = x + "px";
+        tooltip.style.top = y + "px";
+      });
+
+      item.addEventListener("mouseleave", function () {
+        hideTimeout = setTimeout(function () {
+          tooltip.classList.remove("active");
+        }, 150);
+      });
+    });
+
+    /* Keep tooltip visible if hovering over it */
+    tooltip.addEventListener("mouseenter", function () {
+      clearTimeout(hideTimeout);
+    });
+
+    tooltip.addEventListener("mouseleave", function () {
+      tooltip.classList.remove("active");
+    });
+  });
 })();
