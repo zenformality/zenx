@@ -457,6 +457,7 @@
       icon.className = "devicon-" + devicon + "-plain";
       icon.title = r.language;
       document.querySelector(".tech-logos").appendChild(icon);
+      existingTitles.push(r.language);
     });
   }
 

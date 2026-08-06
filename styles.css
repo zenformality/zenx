@@ -628,6 +628,8 @@ html.no-js .preloader { display: none; }
   gap: 12px;
 }
 .tech-logos i {
+  position: relative;
+  cursor: help;
   font-size: 22px;
   color: var(--kraft);
   transition: color 0.2s ease, transform 0.3s var(--ease-out);
@@ -635,6 +637,34 @@ html.no-js .preloader { display: none; }
 .tech-logos i:hover {
   color: var(--accent);
   transform: scale(1.2) rotate(-5deg);
+}
+.tech-logos i::after {
+  content: attr(title);
+  position: absolute;
+  left: 50%;
+  background: var(--ink);
+  color: var(--paper-light);
+  font-family: var(--font-hand);
+  font-size: 13px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.tech-logos i:nth-child(-n+5)::after {
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%) translateY(-4px);
+}
+.tech-logos i:nth-child(n+6)::after {
+  top: calc(100% + 6px);
+  transform: translateX(-50%) translateY(4px);
+}
+.tech-logos i:nth-child(-n+5):hover::after,
+.tech-logos i:nth-child(n+6):hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Scroll cue */
