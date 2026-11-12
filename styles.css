@@ -1,7 +1,5 @@
-/* ============================================================
-   Zenx portfolio — Scrapbook Edition
-   Paper textures, tape, pins, warm tones, personal feel.
-   ============================================================ */
+/* zenx portfolio styles
+   scrapbook look with paper tape and pins */
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 
@@ -60,7 +58,7 @@ body {
 
 body.is-loading { overflow: hidden; }
 
-/* Paper texture background */
+/* paper texture background */
 body::before {
   content: "";
   position: fixed;
@@ -83,7 +81,7 @@ a:hover { color: var(--accent-light); }
 img { display: block; max-width: 100%; }
 ul { margin: 0; padding: 0; list-style: none; }
 
-/* Custom scrollbar — rough feel */
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -122,9 +120,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding-inline: 32px;
 }
 
-/* ============================================================
-   PRELOADER
-   ============================================================ */
+/* preloader */
 .preloader {
   position: fixed;
   inset: 0;
@@ -183,9 +179,7 @@ html.no-js .preloader { display: none; }
   margin-top: 10px;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
+/* header */
 .site-header {
   position: fixed;
   top: 0;
@@ -274,9 +268,7 @@ html.no-js .preloader { display: none; }
   transform: rotate(-2deg) scale(1.05);
 }
 
-/* ============================================================
-   TAPE / PIN / STICKER decorations
-   ============================================================ */
+/* tape pins and stickers */
 .tape {
   position: absolute;
   width: 80px;
@@ -370,9 +362,7 @@ html.no-js .preloader { display: none; }
   border: 1px dashed var(--accent);
 }
 
-/* ============================================================
-   HERO — scrapbook layout
-   ============================================================ */
+/* hero */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -399,7 +389,7 @@ html.no-js .preloader { display: none; }
   gap: 24px;
 }
 
-/* Name card — like a pinned note */
+/* name card */
 .name-card {
   position: relative;
   background: var(--paper-light);
@@ -530,7 +520,7 @@ html.no-js .preloader { display: none; }
 }
 .btn:hover svg { transform: translateY(2px); }
 
-/* Stats card — like a Polaroid */
+/* stats card */
 .stats-card {
   position: relative;
   background: var(--paper-light);
@@ -599,7 +589,7 @@ html.no-js .preloader { display: none; }
   color: var(--ink-muted);
 }
 
-/* Tech logos card */
+/* tech logos card */
 .tech-card {
   position: relative;
   background: var(--paper-light);
@@ -667,7 +657,7 @@ html.no-js .preloader { display: none; }
   transform: translateX(-50%) translateY(0);
 }
 
-/* Scroll cue */
+/* scroll cue */
 .scroll-cue {
   position: absolute;
   bottom: 32px;
@@ -681,9 +671,7 @@ html.no-js .preloader { display: none; }
   content: " ↓";
 }
 
-/* ============================================================
-   MARQUEE — tape strip
-   ============================================================ */
+/* marquee */
 .marquee {
   overflow: hidden;
   padding: 16px 0;
@@ -730,9 +718,7 @@ html.no-js .preloader { display: none; }
 }
 .mq-dot { color: var(--kraft); }
 
-/* ============================================================
-   SECTION
-   ============================================================ */
+/* shared section styles */
 .section {
   padding: 120px 0;
   position: relative;
@@ -749,7 +735,7 @@ html.no-js .preloader { display: none; }
   position: relative;
 }
 
-/* Underline scribble effect */
+/* underline scribble effect */
 .section-kicker::after {
   content: "";
   position: absolute;
@@ -786,9 +772,7 @@ html.no-js .preloader { display: none; }
   margin-top: 12px;
 }
 
-/* ============================================================
-   STICKY WORD CAROUSEL
-   ============================================================ */
+/* sticky word carousel */
 .sticky-section { position: relative; }
 .sticky-stage { height: 320vh; position: relative; }
 
@@ -863,9 +847,7 @@ html.no-js .preloader { display: none; }
   margin-top: 12px;
 }
 
-/* ============================================================
-   WORK — pinned cards
-   ============================================================ */
+/* work */
 .work-list {
   display: flex;
   flex-direction: column;
@@ -890,7 +872,7 @@ html.no-js .preloader { display: none; }
   box-shadow: var(--shadow-lifted);
 }
 
-/* Each row slides in from a different direction */
+/* each row comes in from a different side */
 .work-row:nth-child(1) { animation: slideFromLeft 0.6s var(--ease-out) both; animation-delay: 0.1s; }
 .work-row:nth-child(2) { animation: slideFromRight 0.6s var(--ease-out) both; animation-delay: 0.2s; }
 .work-row:nth-child(3) { animation: dropIn 0.5s var(--ease-spring) both; animation-delay: 0.3s; }
@@ -1034,9 +1016,7 @@ html.no-js .preloader { display: none; }
 }
 .more-link a:hover svg { transform: translateX(4px); }
 
-/* ============================================================
-   ABOUT — journal entry
-   ============================================================ */
+/* about */
 .about-inner {}
 
 .about-title {
@@ -1092,7 +1072,7 @@ html.no-js .preloader { display: none; }
 }
 .about-text a:hover { border-style: solid; }
 
-/* Facts as a checklist */
+/* facts as a checklist */
 .facts-card {
   position: relative;
   background: var(--paper-light);
@@ -1181,9 +1161,7 @@ html.no-js .preloader { display: none; }
   font-weight: 600;
 }
 
-/* ============================================================
-   CONNECT
-   ============================================================ */
+/* connect */
 .connect {
   padding: 120px 0 60px;
 }
@@ -1276,9 +1254,7 @@ html.no-js .preloader { display: none; }
   color: var(--kraft);
 }
 
-/* ============================================================
-   BACK TO TOP
-   ============================================================ */
+/* back to top */
 .to-top {
   position: fixed;
   right: 28px;
@@ -1307,9 +1283,7 @@ html.no-js .preloader { display: none; }
 }
 .to-top svg { width: 18px; height: 18px; }
 
-/* ============================================================
-   PERF TOGGLE
-   ============================================================ */
+/* perf toggle */
 .perf-toggle {
   position: fixed;
   right: 28px;
@@ -1356,9 +1330,7 @@ html.no-js .preloader { display: none; }
 .perf-toggle.is-low { border-style: solid; color: var(--ink-muted); }
 .perf-toggle.is-low:hover { border-color: var(--ink); color: var(--ink); }
 
-/* ============================================================
-   PREVIEW TOOLTIP — floating image preview
-   ============================================================ */
+/* preview tooltip */
 .preview-tooltip {
   position: fixed;
   z-index: 100;
@@ -1464,16 +1436,14 @@ html.no-js .preloader { display: none; }
   transform: rotate(-2deg);
 }
 
-/* ============================================================
-   SCROLL REVEAL — rough, hand-made feel
-   ============================================================ */
+/* scroll reveal */
 .reveal {
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
   transition-delay: var(--d, 0s);
 }
 
-/* Each element enters differently — not uniform */
+/* every element enters a little differently */
 .reveal.from-left {
   transform: translateX(-40px) rotate(-2deg);
 }
@@ -1504,13 +1474,13 @@ html.no-js .preloader { display: none; }
   transform: none;
 }
 
-/* Staggered children — each one slightly different */
+/* stagger the children */
 .reveal.revealed .work-row:nth-child(1) { transition-delay: 0s; }
 .reveal.revealed .work-row:nth-child(2) { transition-delay: 0.1s; }
 .reveal.revealed .work-row:nth-child(3) { transition-delay: 0.2s; }
 .reveal.revealed .work-row:nth-child(4) { transition-delay: 0.3s; }
 
-/* Word reveal */
+/* word reveal */
 .w {
   display: inline-block;
   overflow: hidden;
@@ -1530,13 +1500,11 @@ html.no-js .preloader { display: none; }
   transform: translateY(0) rotate(0deg);
 }
 
-/* Random slight rotation on some words */
+/* random slight rotation on some words */
 .wi:nth-child(3n) { transition-delay: calc(var(--d, 0s) + var(--i, 0) * 0.06s + 0.05s); }
 .wi:nth-child(5n) { transition-delay: calc(var(--d, 0s) + var(--i, 0) * 0.06s - 0.03s); }
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+/* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1552,9 +1520,7 @@ html.no-js .preloader { display: none; }
   .preview-tooltip { transition: none !important; }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+/* responsive */
 @media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr;
@@ -1592,9 +1558,7 @@ html.no-js .preloader { display: none; }
   .work-row { transform: none !important; }
 }
 
-/* ============================================================
-   PERFORMANCE TIERS
-   ============================================================ */
+/* performance tiers */
 html.tier-low .marquee-track { animation-duration: 50s; }
 html.tier-low .work-row:hover { transform: none !important; box-shadow: var(--shadow-paper); }
 html.tier-low .name-card:hover, html.tier-low .stats-card:hover,
@@ -1604,9 +1568,7 @@ html.tier-low .facts-card:hover, html.tier-low .connect-card:hover {
 }
 html.tier-low .link-letters .l { transition: none; }
 
-/* ============================================================
-   CUSTOM CURSOR
-   ============================================================ */
+/* cursor */
 .cursor {
   position: fixed;
   top: 0;
@@ -1677,9 +1639,7 @@ html.tier-low .link-letters .l { transition: none; }
   .cursor { display: none; }
 }
 
-/* ============================================================
-   TILT EFFECT
-   ============================================================ */
+/* tilt effect */
 .tilt-card {
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
   transform-style: preserve-3d;
@@ -1690,16 +1650,12 @@ html.tier-low .link-letters .l { transition: none; }
   box-shadow: var(--shadow-lifted);
 }
 
-/* ============================================================
-   MAGNETIC BUTTONS
-   ============================================================ */
+/* magnetic buttons */
 .btn-magnetic {
   will-change: transform;
 }
 
-/* ============================================================
-   HERO TITLE ANIMATION
-   ============================================================ */
+/* hero title animation */
 .title-line {
   display: block;
   overflow: hidden;
@@ -1721,7 +1677,7 @@ html.tier-low .link-letters .l { transition: none; }
   -webkit-text-stroke: 2px var(--kraft);
 }
 
-/* Hero name highlight */
+/* hero name highlight */
 .hero-name-highlight {
   color: var(--accent);
   position: relative;
@@ -1744,9 +1700,7 @@ html.tier-low .link-letters .l { transition: none; }
   transform: scaleX(1);
 }
 
-/* ============================================================
-   WOBBLE ON HOVER — more organic
-   ============================================================ */
+/* wobble on hover */
 @keyframes wobble {
   0% { transform: rotate(0deg); }
   15% { transform: rotate(-3deg); }
@@ -1761,9 +1715,7 @@ html.tier-low .link-letters .l { transition: none; }
   animation: wobble 0.5s ease-in-out;
 }
 
-/* ============================================================
-   STAMP EFFECT — like slamming a stamp
-   ============================================================ */
+/* stamp effect */
 .sticker {
   position: relative;
   animation: stampSlam 0.4s var(--ease-spring) both;
@@ -1806,9 +1758,7 @@ html.tier-low .link-letters .l { transition: none; }
   50% { transform: rotate(-8deg) scale(1.15); }
 }
 
-/* ============================================================
-   RIPPLE ON CLICK
-   ============================================================ */
+/* ripple on click */
 .btn {
   position: relative;
   overflow: hidden;
@@ -1836,9 +1786,7 @@ html.tier-low .link-letters .l { transition: none; }
   transition: 0s;
 }
 
-/* ============================================================
-   NAV LINK UNDERLINE ANIMATION
-   ============================================================ */
+/* nav link underline */
 .nav-links a:not(.nav-cta) {
   position: relative;
 }
@@ -1859,9 +1807,7 @@ html.tier-low .link-letters .l { transition: none; }
   left: 10%;
 }
 
-/* ============================================================
-   STAT COUNTER FLIP
-   ============================================================ */
+/* stat counter flip */
 .stat-num {
   display: inline-block;
   transition: transform 0.3s var(--ease-spring);
@@ -1871,9 +1817,7 @@ html.tier-low .link-letters .l { transition: none; }
   transform: scale(1.1) rotate(-3deg);
 }
 
-/* ============================================================
-   FACT CHIP GLOW
-   ============================================================ */
+/* fact chip glow */
 .fact-chip {
   position: relative;
   overflow: hidden;
@@ -1894,9 +1838,7 @@ html.tier-low .link-letters .l { transition: none; }
   left: 100%;
 }
 
-/* ============================================================
-   CONNECT LINK WAVY UNDERLINE
-   ============================================================ */
+/* connect link underline */
 .connect-link {
   position: relative;
 }
@@ -1925,16 +1867,12 @@ html.tier-low .link-letters .l { transition: none; }
   transform: scaleX(1);
 }
 
-/* ============================================================
-   MARQUEE HOVER SPEED CHANGE
-   ============================================================ */
+/* marquee hover speed */
 .marquee:hover .marquee-track {
   animation-duration: 15s;
 }
 
-/* ============================================================
-   TAGS BOUNCE
-   ============================================================ */
+/* tags bounce */
 .tags li {
   transition: all 0.3s var(--ease-spring);
 }
@@ -1944,9 +1882,7 @@ html.tier-low .link-letters .l { transition: none; }
 .work-row:hover .tags li:nth-child(3) { transition-delay: 0.1s; transform: translateY(-4px) rotate(-1deg); }
 .work-row:hover .tags li:nth-child(4) { transition-delay: 0.15s; transform: translateY(-5px) rotate(2deg); }
 
-/* ============================================================
-   SCROLL PROGRESS GRADIENT
-   ============================================================ */
+/* scroll progress bar */
 .progress {
   background: linear-gradient(90deg, var(--accent), var(--yellow), var(--accent));
   background-size: 200% 100%;

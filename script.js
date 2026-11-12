@@ -1,13 +1,10 @@
-/* Zenx portfolio — Main 2 (animated edition) */
+/* zenx portfolio the animated version */
 (function () {
   "use strict";
 
-  /* ===========================================================
-     HARDWARE TIER DETECTION
-     Scores the device using CPU cores, memory, connection, and
-     a silent FPS benchmark. Exposes window.__perfTier and a
-     class on <html> so both JS and CSS can react.
-     =========================================================== */
+  /* figure out how much this device can handle
+     cpu memory and connection then a quick fps check
+     sets the perf tier and a class on the html element */
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var STORAGE_KEY = "zenx-perf-tier";
   var savedTier = null;
@@ -18,12 +15,12 @@
 
     var score = 100;
 
-    /* CPU cores */
+    /* cpu cores */
     var cores = navigator.hardwareConcurrency || 4;
     if (cores <= 2) score -= 35;
     else if (cores <= 4) score -= 10;
 
-    /* Device memory (Chrome only) */
+    /* memory on chrome only */
     var mem = navigator.deviceMemory;
     if (mem !== undefined) {
       if (mem <= 1) score -= 40;
@@ -31,7 +28,7 @@
       else if (mem <= 4) score -= 8;
     }
 
-    /* Connection type */
+    /* connection */
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     if (conn && conn.effectiveType) {
       var t = conn.effectiveType;
@@ -39,7 +36,7 @@
       else if (t === "3g") score -= 15;
     }
 
-    /* Touch-only device (no hover = likely mobile) */
+    /* no hover usually means a phone */
     if (!window.matchMedia("(hover: hover)").matches) score -= 10;
 
     if (score >= 70) return "high";
@@ -47,7 +44,7 @@
     return "low";
   }
 
-  /* Run a silent 1-second FPS sample in parallel with preloader */
+  /* sample fps while the preloader runs */
   var fpsPromise = new Promise(function (resolve) {
     var frames = 0;
     var start = performance.now();
@@ -62,9 +59,9 @@
     requestAnimationFrame(loop);
   });
 
-  /* Wait for FPS result, then finalise tier */
-  var tier = "high"; // optimistic default while benchmarking
-  var autoTier = "high"; // what auto-detection would pick (for toggle reset)
+  /* wait for the fps check then pick a tier */
+  var tier = "high"; // assume high until the check finishes
+  var autoTier = "high"; // what auto detection would pick if there was no saved setting
   var tierReady = fpsPromise.then(function (fps) {
     var base = detectTier();
     if (fps < 24) {
@@ -75,7 +72,7 @@
       autoTier = base;
     }
 
-    /* Respect saved preference, otherwise use auto-detected */
+    /* saved setting beats auto detection */
     if (savedTier === "low" || savedTier === "high") {
       tier = savedTier;
     } else {
@@ -86,7 +83,7 @@
     return tier;
   });
 
-  /* For synchronous access before FPS resolves (used during preloader) */
+  /* quick guess for code that runs before the fps check finishes */
   var syncTier = savedTier || detectTier();
   applyTier(syncTier);
 
@@ -103,7 +100,7 @@
     try { localStorage.setItem(STORAGE_KEY, t); } catch (e) {}
   }
 
-  /* ---------- Lenis smooth scroll ---------- */
+  /* smooth scroll */
   var lenis = null;
   var scrollProgress = null;
 
@@ -132,7 +129,7 @@
     }
   });
 
-  /* ---------- Preloader ---------- */
+  /* preloader */
   var preloader = document.getElementById("preloader");
   var preFill = document.getElementById("pre-fill");
   var preCount = document.getElementById("pre-count");
@@ -169,10 +166,10 @@
     if (hero) hero.classList.add("in");
   }
 
-  /* ---------- Scroll progress ---------- */
+  /* scroll progress */
   scrollProgress = document.getElementById("progress");
 
-  /* Non-Lenis scroll fallback (medium + low tiers) */
+  /* fallback for devices without smooth scroll */
   if (!lenis && scrollProgress) {
     window.addEventListener("scroll", function () {
       var max = document.documentElement.scrollHeight - window.innerHeight;
@@ -180,7 +177,7 @@
     }, { passive: true });
   }
 
-  /* ---------- Sticky header state ---------- */
+  /* sticky header */
   var header = document.querySelector(".site-header");
 
   function onScrollHeader() {
@@ -192,13 +189,13 @@
   window.addEventListener("scroll", onScrollHeader, { passive: true });
   onScrollHeader();
 
-  /* ---------- Footer year ---------- */
+  /* footer year */
   var yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Custom cursor (high only) ---------- */
+  /* cursor */
   tierReady.then(function (t) {
     if (t !== "high") return;
 
@@ -247,7 +244,7 @@
     }
   });
 
-  /* ---------- Split headings into word masks ---------- */
+  /* split headings into word masks */
   var splitEls = Array.prototype.slice.call(document.querySelectorAll("[data-split]"));
 
   splitEls.forEach(function (el) {
@@ -281,7 +278,7 @@
     el.appendChild(frag);
   });
 
-  /* ---------- Split link letters ---------- */
+  /* split the connect link into letters */
   var linkLetters = document.getElementById("link-letters");
 
   if (linkLetters) {
@@ -296,17 +293,17 @@
     }
   }
 
-  /* ---------- Reveal on scroll ---------- */
+  /* reveal on scroll */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
-  /* Assign random reveal directions for organic feel */
+  /* give each reveal a random direction so it feels less robotic */
   var revealTypes = ["from-left", "from-right", "from-below", "drop", "flip", "unfold"];
   revealEls.forEach(function (el, i) {
-    /* Skip elements that already have animation (cards, marquee) */
+    /* skip stuff that already animates */
     if (el.classList.contains("name-card") || el.classList.contains("stats-card") ||
         el.classList.contains("tech-card") || el.classList.contains("marquee")) return;
 
-    /* Assign type based on index for variety */
+    /* cycle through the directions */
     var type = revealTypes[i % revealTypes.length];
     el.classList.add(type);
   });
@@ -333,7 +330,7 @@
     });
   }
 
-  /* ---------- Stats counter ---------- */
+  /* stats counter */
   var statNums = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count]"));
 
   if (statNums.length) {
@@ -371,10 +368,10 @@
     requestAnimationFrame(tick);
   }
 
-  /* ---------- GitHub profile sync ---------- */
+  /* github sync */
   var GITHUB_USER = "zenformality";
   var CACHE_KEY = "zenx-github-cache";
-  var CACHE_TTL = 3600000; /* 1 hour */
+  var CACHE_TTL = 3600000; /* one hour */
 
   function updateStat(id, value, suffix) {
     var el = document.getElementById(id);
@@ -399,14 +396,14 @@
     updateStat("stat-repos", profile.public_repos);
     updateStat("stat-langs", langCount);
 
-    /* Re-animate any stat already visible */
+    /* rerun the counters if they are on screen */
     ["stat-stars", "stat-repos", "stat-langs"].forEach(function (id) {
       var el = document.getElementById(id);
       if (!el) return;
       animateCount(el);
     });
 
-    /* Update tech-logos with any new languages found */
+    /* add icons for languages found on github */
     var logoMap = {
       "Python": "python",
       "TypeScript": "typescript",
@@ -508,13 +505,13 @@
       var syncEl = document.getElementById("footer-sync");
       if (syncEl) syncEl.textContent = "synced just now";
     }).catch(function () {
-      /* Silently fail — static values remain */
+      /* if this fails the hardcoded numbers stay */
     });
   }
 
   fetchGitHubData();
 
-  /* ---------- Sticky word carousel (vertical track) ---------- */
+  /* sticky word carousel */
   var stage = document.querySelector(".sticky-stage");
   var track = document.getElementById("swap-track");
   var dots = Array.prototype.slice.call(document.querySelectorAll("#swap-dots .dot"));
@@ -559,7 +556,7 @@
     updateSwap();
   }
 
-  /* ---------- Dot grid canvas (high only) ---------- */
+  /* dot grid for high tier only */
   tierReady.then(function (t) {
     if (t !== "high") return;
 
@@ -657,7 +654,7 @@
     resizeCanvas();
   });
 
-  /* ---------- Orb parallax (high only) ---------- */
+  /* orb parallax for high tier only */
   tierReady.then(function (t) {
     if (t !== "high" || reduceMotion) return;
 
@@ -687,7 +684,7 @@
     applyParallax();
   });
 
-  /* ---------- Magnetic buttons (medium + high only) ---------- */
+  /* magnetic buttons */
   tierReady.then(function (t) {
     if (t === "low" || reduceMotion) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -707,7 +704,7 @@
     });
   });
 
-  /* ---------- Back to top ---------- */
+  /* back to top */
   var toTop = document.getElementById("to-top");
 
   if (toTop) {
@@ -724,7 +721,7 @@
     });
   }
 
-  /* ---------- Performance toggle ---------- */
+  /* perf toggle */
   var perfBtn = document.getElementById("perf-toggle");
 
   function updatePerfButton(t) {
@@ -744,7 +741,7 @@
       var next = window.__perfTier === "low" ? autoTier : "low";
       setTier(next);
 
-      /* Kill or start Lenis on the fly */
+      /* turn smooth scroll on or off */
       if (next === "high" && !reduceMotion && !lenis && typeof Lenis !== "undefined") {
         lenis = new Lenis({
           duration: 1.2,
@@ -767,7 +764,7 @@
     });
   }
 
-  /* ---------- Tilt effect on cards ---------- */
+  /* tilt effect */
   tierReady.then(function (t) {
     if (t === "low" || reduceMotion) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -795,7 +792,7 @@
     });
   });
 
-  /* ---------- Magnetic buttons ---------- */
+  /* magnetic buttons */
   tierReady.then(function (t) {
     if (t === "low" || reduceMotion) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -815,7 +812,7 @@
     });
   });
 
-  /* ---------- Sticker stamp animation ---------- */
+  /* sticker stamp */
   var stickers = Array.prototype.slice.call(document.querySelectorAll(".sticker"));
   stickers.forEach(function (sticker) {
     sticker.addEventListener("mouseenter", function () {
@@ -826,7 +823,7 @@
     });
   });
 
-  /* ---------- Parallax on mouse move for hero cards ---------- */
+  /* hero card parallax */
   tierReady.then(function (t) {
     if (t === "low" || reduceMotion) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -862,7 +859,7 @@
     });
   });
 
-  /* ---------- Konami code easter egg ---------- */
+  /* konami code */
   var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
   var konamiIndex = 0;
 
@@ -883,7 +880,7 @@
     }
   });
 
-  /* ---------- Preview tooltip on work items ---------- */
+  /* preview tooltip */
   tierReady.then(function () {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
@@ -898,7 +895,7 @@
 
     if (!tooltip || !previewItems.length) return;
 
-    /* Preload images on init */
+    /* preload preview images */
     previewItems.forEach(function (item) {
       var imgSrc = item.getAttribute("data-preview-img");
       if (imgSrc && !imageCache[imgSrc]) {
@@ -916,11 +913,11 @@
 
         clearTimeout(hideTimeout);
 
-        /* Position tooltip near cursor but offset */
+        /* keep the tooltip near the cursor */
         var x = e.clientX + 20;
         var y = e.clientY - 120;
 
-        /* Keep within viewport */
+        /* dont let it leave the screen */
         if (x + 380 > window.innerWidth) x = e.clientX - 400;
         if (y < 20) y = 20;
         if (y + 260 > window.innerHeight) y = window.innerHeight - 270;
@@ -928,28 +925,28 @@
         tooltip.style.left = x + "px";
         tooltip.style.top = y + "px";
 
-        /* Show loading state */
+        /* show the loader */
         if (tooltipLoading) tooltipLoading.classList.remove("hidden");
         if (tooltipImg) tooltipImg.classList.remove("loaded");
 
-        /* Only swap image if changed */
+        /* only swap if the image changed */
         if (currentImg !== imgSrc && tooltipImg) {
           tooltipImg.src = imgSrc;
           currentImg = imgSrc;
 
-          /* Hide loading when image loads */
+          /* hide the loader when the image is ready */
           tooltipImg.onload = function () {
             if (tooltipLoading) tooltipLoading.classList.add("hidden");
             tooltipImg.classList.add("loaded");
           };
 
-          /* If cached/loaded already */
+          /* already cached */
           if (imageCache[imgSrc] && imageCache[imgSrc].complete) {
             if (tooltipLoading) tooltipLoading.classList.add("hidden");
             tooltipImg.classList.add("loaded");
           }
         } else if (tooltipImg) {
-          /* Same image, just show it */
+          /* same image as before */
           if (tooltipLoading) tooltipLoading.classList.add("hidden");
           tooltipImg.classList.add("loaded");
         }
@@ -987,7 +984,7 @@
       });
     });
 
-    /* Keep tooltip visible if hovering over it */
+    /* dont hide it while the cursor is over it */
     tooltip.addEventListener("mouseenter", function () {
       clearTimeout(hideTimeout);
     });
