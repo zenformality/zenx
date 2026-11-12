@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zenx-sepia.vercel.app/sitemap.xml
+Sitemap: https://prakit.is-a.dev/sitemap.xml
